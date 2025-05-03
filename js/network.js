@@ -115,12 +115,28 @@ class NeuralNetwork {
     }
 
     train(inputs, targets, epochs = 1000) {
+        let totalError = 0;
+        let numSamples = 0;
+
         for (let epoch = 0; epoch < epochs; epoch++) {
+            let epochError = 0;
             for (let i = 0; i < inputs.length; i++) {
                 this.forward(inputs[i]);
                 this.backward(inputs[i], targets[i]);
+                
+                // Calculate error for this sample
+                const outputError = this.output.map((o, j) => targets[i][j] - o);
+                const sampleError = outputError.reduce((sum, err) => sum + err * err, 0) / outputError.length;
+                epochError += sampleError;
             }
+            
+            // Calculate mean error for this epoch
+            totalError += epochError / inputs.length;
+            numSamples++;
         }
+
+        // Return mean error across all epochs
+        return totalError / numSamples;
     }
 
     predict(input) {

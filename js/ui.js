@@ -31,6 +31,7 @@ class NeuralNetworkUI {
         document.getElementById('clearButton').addEventListener('click', () => {
             this.points = [];
             this.draw();
+            this.log('Pontos removidos');
         });
 
         // Reset button
@@ -38,11 +39,18 @@ class NeuralNetworkUI {
             this.network = new NeuralNetwork(2, 4, 1);
             this.network.setActivationFunction(this.network.activationFunction);
             this.draw();
+            this.log('Rede neural reinicializada');
+        });
+
+        // Random data button
+        document.getElementById('randomDataButton').addEventListener('click', () => {
+            this.generateRandomData();
         });
 
         // Activation function selector
         document.getElementById('activationFunction').addEventListener('change', (e) => {
             this.network.setActivationFunction(e.target.value);
+            this.log(`Função de ativação alterada para ${e.target.value}`);
             if (this.points.length > 0) {
                 this.trainNetwork();
             }
@@ -55,6 +63,7 @@ class NeuralNetworkUI {
             const value = parseFloat(e.target.value);
             learningRateValue.textContent = value.toFixed(3);
             this.network.learningRate = value;
+            this.log(`Taxa de aprendizado alterada para ${value.toFixed(3)}`);
         });
 
         // Epochs slider
@@ -63,6 +72,14 @@ class NeuralNetworkUI {
         epochsSlider.addEventListener('input', (e) => {
             const value = parseInt(e.target.value);
             epochsValue.textContent = value;
+        });
+
+        // Random points slider
+        const randomPointsSlider = document.getElementById('randomPoints');
+        const randomPointsValue = document.getElementById('randomPointsValue');
+        randomPointsSlider.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value);
+            randomPointsValue.textContent = value;
         });
 
         // Window resize handler
@@ -93,6 +110,36 @@ class NeuralNetworkUI {
         this.draw();
     }
 
+    generateRandomData() {
+        const numPoints = parseInt(document.getElementById('randomPoints').value);
+        this.points = [];
+
+        for (let i = 0; i < numPoints; i++) {
+            // Generate random coordinates between -1 and 1
+            const x = Math.random() * 2 - 1;
+            const y = Math.random() * 2 - 1;
+            
+            // Assign class based on position (example: diagonal split)
+            const class_ = x + y > 0 ? 1 : 0;
+            
+            this.points.push({
+                x: x,
+                y: y,
+                class: class_
+            });
+        }
+
+        this.log(`Gerados ${numPoints} pontos aleatórios`);
+        this.draw();
+    }
+
+    log(message) {
+        const logBox = document.getElementById('logBox');
+        const timestamp = new Date().toLocaleTimeString();
+        logBox.innerHTML += `[${timestamp}] ${message}\n`;
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
     async trainNetwork() {
         if (this.isTraining) return;
         this.isTraining = true;
@@ -101,14 +148,26 @@ class NeuralNetworkUI {
         const targets = this.points.map(p => [p.class]);
         const epochs = parseInt(document.getElementById('epochs').value);
 
-        // Train for specified epochs
-        for (let epoch = 0; epoch < epochs; epoch++) {
-            this.network.train(inputs, targets, 1);
-            this.draw();
-            await new Promise(resolve => setTimeout(resolve, 10));
-        }
+        this.log(`Iniciando treinamento com ${epochs} épocas...`);
 
-        this.isTraining = false;
+        try {
+            // Train for specified epochs
+            for (let epoch = 0; epoch < epochs; epoch++) {
+                const error = this.network.train(inputs, targets, 1);
+                if (epoch % 100 === 0) {
+                    this.log(`Época ${epoch}: Erro = ${error.toFixed(4)}`);
+                }
+                this.draw();
+                await new Promise(resolve => setTimeout(resolve, 10));
+            }
+
+            this.log('Treinamento concluído');
+        } catch (error) {
+            this.log(`Erro durante o treinamento: ${error.message}`);
+            console.error('Erro no treinamento:', error);
+        } finally {
+            this.isTraining = false;
+        }
     }
 
     draw() {

@@ -29,15 +29,91 @@ body {
     padding: 2rem;
 }
 
+/* Header Styles */
 header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 1rem;
     background-color: white;
     border-radius: 8px;
     box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.title-section {
+    flex: 1;
+}
+
+.title-section h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.author-card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 300px;
+}
+
+.author-profile {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.author-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.author-bio {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-link {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}
+
+.help-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Main Content */
 main {
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -47,7 +123,7 @@ main {
 .visualization-section {
     background-color: white;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: var(--card-shadow);
 }
 
@@ -58,6 +134,7 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 canvas {
@@ -81,69 +158,108 @@ canvas {
     pointer-events: none;
 }
 
+/* Control Panel */
 .control-panel {
     background-color: white;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: var(--card-shadow);
 }
 
-.button-group {
+.panel-section {
+    margin-bottom: 2rem;
+}
+
+.panel-section h2 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
 }
 
-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--primary-color);
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.control-group {
+    margin-bottom: 1.5rem;
 }
 
-button:hover {
-    background-color: var(--secondary-color);
-}
-
-button.danger {
-    background-color: var(--danger-color);
-}
-
-button.success {
-    background-color: var(--success-color);
-}
-
-.slider-group {
-    margin-bottom: 1rem;
-}
-
-.slider-group label {
+.control-group label {
     display: block;
     margin-bottom: 0.5rem;
-}
-
-.slider-group input[type="range"] {
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
-
-.slider-group span {
-    display: block;
-    text-align: right;
-    font-size: 0.9rem;
     color: var(--secondary-color);
 }
 
-.concept-card {
+.select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
     background-color: white;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="range"] {
+    flex: 1;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--card-shadow);
+}
+
+/* Log Box */
+.log-box {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+/* Concept Cards */
+.concept-card {
+    background-color: var(--background-color);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
-    box-shadow: var(--card-shadow);
     cursor: pointer;
     transition: transform 0.3s;
 }
@@ -153,8 +269,11 @@ button.success {
 }
 
 .concept-card h3 {
-    margin-bottom: 0.5rem;
     color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .concept-card p {
@@ -162,30 +281,7 @@ button.success {
     color: var(--secondary-color);
 }
 
-.tooltip {
-    position: absolute;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    pointer-events: none;
-    z-index: 1000;
-    max-width: 200px;
-}
-
-.log-box {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 1rem;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 0.9rem;
-    height: 200px;
-    overflow-y: auto;
-    margin-top: 1rem;
-}
-
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -203,28 +299,65 @@ button.success {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 2rem;
     border-radius: 8px;
-    max-width: 600px;
     width: 90%;
+    max-width: 600px;
     max-height: 80vh;
     overflow-y: auto;
 }
 
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--secondary-color);
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body section {
+    margin-bottom: 2rem;
+}
+
+.function-explanation {
+    margin-bottom: 1rem;
+}
+
+.function-explanation h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-card {
+        max-width: 100%;
+    }
+
     main {
         grid-template-columns: 1fr;
     }
-    
+
+    .button-group {
+        flex-direction: column;
+    }
+
     .control-panel {
         order: -1;
     }
