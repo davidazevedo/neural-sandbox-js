@@ -1,0 +1,30 @@
+{
+  "name": "neural-sandbox-js",
+  "version": "1.0.0",
+  "description": "Um simulador interativo de redes neurais, desenvolvido para auxiliar no entendimento de conceitos fundamentais de Machine Learning e Redes Neurais Artificiais.",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "http-server public -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidazevedo/neural-sandbox-js.git"
+  },
+  "keywords": [
+    "neural-network",
+    "machine-learning",
+    "education",
+    "interactive",
+    "visualization"
+  ],
+  "author": "David Azevedo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidazevedo/neural-sandbox-js/issues"
+  },
+  "homepage": "https://github.com/davidazevedo/neural-sandbox-js#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 

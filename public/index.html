@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Sandbox JS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>Neural Sandbox JS</h1>
+                    <p class="subtitle">Simulador Interativo de Redes Neurais</p>
+                </div>
+                <div class="author-card">
+                    <div class="author-profile">
+                        <img src="https://avatars.githubusercontent.com/u/984221?v=4&size=64" alt="David Azevedo" class="author-photo">
+                        <h2>David Azevedo</h2>
+                        <p class="author-bio">Mestrando em Inteligência Artificial e Educação, desenvolvedor e pesquisador em redes neurais.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/davidazevedosp" target="_blank" class="social-link linkedin" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/davidazevedoba" target="_blank" class="social-link instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com/davidazevedosp" target="_blank" class="social-link twitter" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/davidazevedo" target="_blank" class="social-link github" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button id="helpButton" class="help-button" title="Abrir ajuda">
+                <i class="fas fa-question-circle"></i>
+            </button>
+        </header>
+
+        <main>
+            <div class="visualization-section">
+                <div class="canvas-container">
+                    <canvas id="neuralCanvas" title="Clique para adicionar um ponto com uma classe alternada (vermelha ou azul)"></canvas>
+                    <div class="grid-overlay"></div>
+                </div>
+                <div class="button-group">
+                    <button id="trainButton" class="btn primary" title="Inicia o treinamento com os dados inseridos">
+                        <i class="fas fa-play"></i> Treinar
+                    </button>
+                    <button id="clearButton" class="btn secondary" title="Remove todos os pontos do canvas">
+                        <i class="fas fa-trash"></i> Limpar
+                    </button>
+                    <button id="resetButton" class="btn secondary" title="Reinicializa os pesos da rede neural">
+                        <i class="fas fa-sync"></i> Resetar Rede
+                    </button>
+                    <button id="randomDataButton" class="btn secondary" title="Gera pontos aleatórios para treinamento">
+                        <i class="fas fa-random"></i> Dados Aleatórios
+                    </button>
+                </div>
+                <div class="log-box">
+                    <pre id="logBox"></pre>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <div class="panel-section">
+                    <h2><i class="fas fa-cog"></i> Configurações</h2>
+                    <div class="control-group">
+                        <label for="activationFunction" title="Selecione a função de ativação usada pela rede">
+                            Função de Ativação:
+                        </label>
+                        <select id="activationFunction" class="select">
+                            <option value="relu">ReLU</option>
+                            <option value="sigmoid">Sigmoid</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="learningRate" title="Ajuste a velocidade do aprendizado durante o treino">
+                            Taxa de Aprendizado:
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="learningRate" min="0.001" max="0.1" step="0.001" value="0.01">
+                            <span id="learningRateValue">0.01</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="epochs" title="Número de épocas de treinamento">
+                            Épocas de Treinamento:
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="epochs" min="100" max="5000" step="100" value="1000">
+                            <span id="epochsValue">1000</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="randomPoints" title="Número de pontos aleatórios a serem gerados">
+                            Pontos Aleatórios:
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="randomPoints" min="10" max="100" step="10" value="50">
+                            <span id="randomPointsValue">50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><i class="fas fa-lightbulb"></i> Conceitos</h2>
+                    <div class="concept-card" id="perceptronCard">
+                        <h3><i class="fas fa-brain"></i> Perceptron</h3>
+                        <p>Unidade básica de uma rede neural que recebe entradas, aplica pesos e uma função de ativação.</p>
+                    </div>
+                    <div class="concept-card" id="activationCard">
+                        <h3><i class="fas fa-chart-line"></i> Função de Ativação</h3>
+                        <p>Transforma a entrada linear em uma saída não-linear, permitindo que a rede aprenda padrões complexos.</p>
+                    </div>
+                    <div class="concept-card" id="backpropCard">
+                        <h3><i class="fas fa-sync"></i> Backpropagation</h3>
+                        <p>Algoritmo que ajusta os pesos da rede neural para minimizar o erro de previsão.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Ajuda -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-question-circle"></i> Ajuda</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <section>
+                    <h3><i class="fas fa-brain"></i> Explicação da Tela</h3>
+                    <p>Esta interface permite simular o comportamento de uma rede neural simples com duas funções de ativação: ReLU e Sigmoid. Você pode adicionar pontos ao plano cartesiano, escolher a função de ativação, controlar a taxa de aprendizado e visualizar a separação das classes.</p>
+                </section>
+                <section>
+                    <h3><i class="fas fa-cogs"></i> Explicação das Funções</h3>
+                    <div class="function-explanation">
+                        <h4>ReLU (Rectified Linear Unit)</h4>
+                        <p>Retorna 0 para valores negativos e o valor original para positivos. Simples e eficiente, comum em redes profundas.</p>
+                    </div>
+                    <div class="function-explanation">
+                        <h4>Sigmoid</h4>
+                        <p>Compressão suave dos valores entre 0 e 1. Ideal para saídas probabilísticas e tarefas binárias.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/utils.js"></script>
+    <script src="../src/network.js"></script>
+    <script src="../src/ui.js"></script>
+</body>
+</html> 
