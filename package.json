@@ -1,7 +1,7 @@
 {
   "name": "neural-sandbox-js",
   "version": "1.0.0",
-  "description": "Um simulador interativo de redes neurais, desenvolvido para auxiliar no entendimento de conceitos fundamentais de Machine Learning e Redes Neurais Artificiais.",
+  "description": "Um simulador interativo de redes neurais, desenvolvido para auxiliar no entendimento de conceitos fundamentais de Machine Learning e Redes Neurais Artificiais. Projeto de pesquisa do mestrado em Inteligência Artificial e Educação na UFBA e pós-graduação em IA na USJT.",
   "main": "public/index.html",
   "scripts": {
     "start": "http-server public -p 3000",
@@ -16,9 +16,12 @@
     "machine-learning",
     "education",
     "interactive",
-    "visualization"
+    "visualization",
+    "ufba",
+    "usjt",
+    "ai-education"
   ],
-  "author": "David Azevedo",
+  "author": "David Azevedo (Mestrando UFBA, Pós-graduando USJT)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/davidazevedo/neural-sandbox-js/issues"

@@ -10,9 +10,13 @@ Este projeto é parte da pesquisa de mestrado em Inteligência Artificial e Educ
 
 ### David Azevedo
 - **Mestrando em Inteligência Artificial e Educação**
-  - Universidade Federal de São Carlos (UFSCar)
+  - Universidade Federal da Bahia (UFBA)
   - Área de Concentração: Inteligência Artificial Aplicada à Educação
   - Dissertação: "Desenvolvimento de Ferramentas Interativas para o Ensino de Redes Neurais"
+  
+- **Pós-graduando em Inteligência Artificial**
+  - Universidade São Judas Tadeu (USJT)
+  - São Paulo, SP
   
 - **Bacharel em Ciência da Computação**
   - Universidade Federal de São Carlos (UFSCar)
