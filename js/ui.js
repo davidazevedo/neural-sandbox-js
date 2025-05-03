@@ -87,6 +87,42 @@ class NeuralNetworkUI {
             this.resizeCanvas();
             this.draw();
         });
+
+        // Help modal
+        const helpModal = document.getElementById('helpModal');
+        const helpButton = document.getElementById('helpButton');
+        const helpClose = helpModal.querySelector('.close-button');
+
+        helpButton.addEventListener('click', () => {
+            helpModal.style.display = 'block';
+        });
+
+        helpClose.addEventListener('click', () => {
+            helpModal.style.display = 'none';
+        });
+
+        // Donation modal
+        const donateModal = document.getElementById('donateModal');
+        const donateButton = document.getElementById('donateButton');
+        const donateClose = donateModal.querySelector('.close-button');
+
+        donateButton.addEventListener('click', () => {
+            donateModal.style.display = 'block';
+        });
+
+        donateClose.addEventListener('click', () => {
+            donateModal.style.display = 'none';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === helpModal) {
+                helpModal.style.display = 'none';
+            }
+            if (e.target === donateModal) {
+                donateModal.style.display = 'none';
+            }
+        });
     }
 
     resizeCanvas() {

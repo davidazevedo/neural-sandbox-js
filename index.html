@@ -37,9 +37,14 @@
                     </div>
                 </div>
             </div>
-            <button id="helpButton" class="help-button" title="Abrir ajuda">
-                <i class="fas fa-question-circle"></i>
-            </button>
+            <div class="header-actions">
+                <button id="helpButton" class="help-button" title="Abrir ajuda">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+                <button id="donateButton" class="donate-button" title="Apoiar o projeto">
+                    <i class="fas fa-coffee"></i>
+                </button>
+            </div>
         </header>
 
         <main>
@@ -150,6 +155,24 @@
                         <p>Compressão suave dos valores entre 0 e 1. Ideal para saídas probabilísticas e tarefas binárias.</p>
                     </div>
                 </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-heart"></i> Apoie este Projeto</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Se você gostou deste simulador e gostaria de apoiar o desenvolvimento de mais ferramentas educacionais, considere fazer uma doação através do PIX.</p>
+                <div class="pix-info">
+                    <p><strong>Chave PIX:</strong> davidengine@gmail.com</p>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5kYXZpZGVuZ2luZUBnbWFpbC5jb208L3RleHQ+PC9zdmc+" alt="QR Code PIX" class="pix-qr">
+                </div>
+                <p class="thank-you">Muito obrigado pelo seu apoio! ☕</p>
             </div>
         </div>
     </div>
